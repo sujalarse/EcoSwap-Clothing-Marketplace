@@ -12,15 +12,15 @@ connectDB();
 const app = express();
 const server = http.createServer(app); // Wrap Express inside Node HTTP server
 
-// Configure Socket.io with CORS
+// Configure Socket.io with production CORS
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Vite's default frontend port
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
 
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // API Routes
